@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Register for a Course | Code with Jallow, Basse</title>
+  <meta name="description" content="Register online for computer skills, typing, Microsoft Office, programming and web development training with Code with Jallow in Basse, The Gambia.">
+  <meta name="theme-color" content="#0a1b36">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="register">
+  <a class="skip" href="#main">Skip to content</a>
+  <header id="site-header"></header>
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <span class="eyebrow" style="background:rgba(255,255,255,.1);color:var(--sun)">Registration</span>
+        <h1>Register for a course.</h1>
+        <p>It takes about two minutes. We will contact you to confirm your place.</p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:48px">
+      <div class="container form-wrap">
+        <div class="form-card">
+          <div class="form-error" role="alert"></div>
+          <form id="register-form" novalidate>
+            <div class="form-grid">
+              <div class="field full"><label for="name">Full name</label>
+                <input id="name" name="name" required autocomplete="name" placeholder="e.g. Awa Jallow"></div>
+              <div class="field"><label for="age">Age</label>
+                <input id="age" name="age" type="number" min="5" max="99" required inputmode="numeric" placeholder="e.g. 17"></div>
+              <div class="field"><label for="gender">Gender <span class="opt">(optional)</span></label>
+                <select id="gender" name="gender"><option value="">Prefer not to say</option><option>Female</option><option>Male</option></select></div>
+              <div class="field"><label for="phone">Phone number</label>
+                <input id="phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" placeholder="e.g. 7012345"></div>
+              <div class="field"><label for="email">Email address <span class="opt">(optional)</span></label>
+                <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com"></div>
+              <div class="field full"><label for="occupation">School or occupation</label>
+                <input id="occupation" name="occupation" required placeholder="e.g. Grade 11 student at Basse Senior School"></div>
+              <div class="field full"><label for="course">Course of interest</label>
+                <select id="course" name="course" required></select></div>
+              <fieldset class="field full" style="border:0;padding:0;margin:0">
+                <legend style="margin-bottom:8px">Preferred learning mode</legend>
+                <div class="radio-row">
+                  <label><input type="radio" name="mode" value="In-person" required checked> In-person</label>
+                  <label><input type="radio" name="mode" value="Online"> Online</label>
+                </div>
+                <span class="note" id="mode-hint"></span>
+              </fieldset>
+              <div class="hp" aria-hidden="true"><label>Leave this empty <input name="website" tabindex="-1" autocomplete="off"></label></div>
+              <label class="consent full"><input type="checkbox" name="consent" required>
+                <span>I agree that Code with Jallow may store my details to manage my registration and contact me about my course. My information is kept private and is never shared or sold.</span></label>
+              <div class="field full"><button class="btn btn-primary" type="submit">Submit registration</button></div>
+            </div>
+          </form>
+          <div class="success" role="status">
+            <div class="tick" data-icon="check"></div>
+            <h2>Thank you, <span data-name></span>!</h2>
+            <p class="lead">Your registration has been received. We will contact you on the phone number you gave to confirm your place and share the schedule and fee.</p>
+            <a class="btn btn-outline" href="courses.html">Back to courses</a>
+          </div>
+        </div>
+
+        <aside class="grid">
+          <div class="card"><div class="icon-box" data-icon="shield"></div><h3>Your data is safe</h3>
+            <p>We only ask for what we need. Your details are used to manage your registration and are never shared or sold.</p></div>
+          <div class="card"><div class="icon-box" data-icon="phone"></div><h3>Prefer to talk?</h3>
+            <p data-phone-list></p>
+            <a class="btn btn-outline btn-sm" data-wa="Hello! I would like to register for a course." href="#" target="_blank" rel="noopener">Register on WhatsApp</a></div>
+        </aside>
+      </div>
+    </section>
+  </main>
+  <footer id="site-footer"></footer>
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
