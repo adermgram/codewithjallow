@@ -63,7 +63,7 @@
       header.innerHTML = `
         <div class="container nav">
           <a class="brand" href="index.html" aria-label="${esc(SITE.name)} home">
-            <span class="brand-mark">CJ</span>
+            <img src="images/logo.jpg" alt="" width="50" height="50">
             <span class="brand-text"><strong>${esc(SITE.name)}</strong><small>${esc(SITE.parent)}</small></span>
           </a>
           <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="menu">${icon("menu")}</button>
@@ -87,7 +87,7 @@
         <div class="container">
           <div class="footer-grid">
             <div>
-              <a class="brand" href="index.html"><span class="brand-mark">CJ</span>
+              <a class="brand" href="index.html"><img src="images/logo.jpg" alt="" width="50" height="50">
                 <span class="brand-text"><strong>${esc(SITE.name)}</strong><small>${esc(SITE.parent)}</small></span></a>
               <p>${esc(SITE.tagline)}. Practical ICT training for students, youths and communities in Basse and beyond.</p>
               <div class="socials">${socialLinks()}</div>
@@ -103,9 +103,10 @@
           </div>
           <div class="footer-bottom">
             <span>© ${new Date().getFullYear()} ${esc(SITE.name)} · ${esc(SITE.parent)}. All rights reserved.</span>
-            <span>Made with care in The Gambia 🇬🇲</span>
+            <span>Made with care in The Gambia</span>
           </div>
-        </div>`;
+        </div>
+        <div class="flag" aria-hidden="true"></div>`;
     }
 
     const wa = document.createElement("a");
@@ -128,12 +129,59 @@
 
   /* ---------- Renderers ---------- */
   function courseCard(c) {
+    const n = String(COURSES.indexOf(c) + 1).padStart(2, "0");
     return `
       <article class="card course-card reveal">
+        <span class="num" aria-hidden="true">${n}</span>
         <div class="card-top"><div class="icon-box">${icon(c.icon)}</div><span class="tag ${c.status}">${statusLabel(c.status)}</span></div>
         <h3>${esc(c.name)}</h3>
         <p>${esc(c.tagline)}</p>
         <div class="meta"><span>${icon("clock", "mini")} ${esc(c.duration)}</span><a href="courses.html#${c.id}">Details →</a></div>
+      </article>`;
+  }
+
+  /* Little illustration for each course tile on the home page */
+  const keys = (rows) => rows.map((n, r) => `<div class="krow">${Array.from({ length: n }, (_, i) =>
+    `<b style="--d:${((i * 7 + r * 3) % 11) * 0.23}s"></b>`).join("")}</div>`).join("");
+  const VIS = {
+    "basic-computer-skills": `<div class="vis vis-basic"><span>${icon("monitor")}</span><span>${icon("file-text")}</span><span>${icon("globe")}</span><span>${icon("shield")}</span></div>`,
+    "typing-skills": `<div class="vis vis-keys">${keys([10, 9, 7])}<div class="space"></div></div>`,
+    "microsoft-office": `<div class="vis vis-office"><b class="w">W</b><b class="x">X</b><b class="p">P</b></div>`,
+    programming: `<div class="vis vis-code"><div class="langs"><b>C++</b><b>Java</b><b>Python</b></div>
+      <pre><i class="k">class</i> <i class="f">Student</i>:
+    <i class="k">def</i> <i class="f">learn</i>(self, skill):
+        <i class="k">return</i> <i class="s">f"{skill} ✔"</i>
+
+me = <i class="f">Student</i>()
+<i class="f">print</i>(me.learn(<i class="s">"Python"</i>))</pre></div>`,
+    "web-development": `<div class="vis vis-browser"><div class="bar"><i></i><i></i><i></i><span>yoursite.gm</span></div>
+      <div class="page">
+        <div class="mnav"><b></b><s></s><s></s><s></s></div>
+        <div class="mhero">
+          <div class="mtxt"><u class="h"></u><u class="h2"></u><u class="s"></u><em>Register</em></div>
+          <div class="mimg"><span></span></div>
+        </div>
+      </div>
+      <code class="float-code"><i class="p">&lt;</i><i class="k">h1</i><i class="p">&gt;</i>Welcome<i class="p">&lt;/</i><i class="k">h1</i><i class="p">&gt;</i></code></div>`,
+    networking: `<div class="vis vis-net"><svg viewBox="0 0 200 110" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path class="flow" d="M100 55 40 22M100 55 165 25M100 55 45 90M100 55 160 88"/>
+      <circle cx="100" cy="55" r="11" fill="#06183a"/><circle cx="40" cy="22" r="7" fill="#06183a"/><circle cx="165" cy="25" r="7" fill="#06183a"/>
+      <circle cx="45" cy="90" r="7" fill="#06183a"/><circle cx="160" cy="88" r="7" fill="#06183a"/></svg></div>`,
+    robotics: `<div class="vis vis-net"><svg viewBox="0 0 200 110" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path class="flow" d="M10 30h45l12 12h28M10 80h40l15-15h25M190 30h-45l-12 12h-18M190 80h-40l-15-15h-15"/>
+      <rect x="82" y="38" width="36" height="34" rx="6" fill="#06183a"/><circle cx="100" cy="55" r="5" fill="currentColor"/></svg></div>`
+  };
+
+  function bentoCard(c) {
+    return `
+      <article class="card bento-card b-${c.id} reveal">
+        ${VIS[c.id] || ""}
+        <div class="b-body">
+          <div class="card-top"><span class="tag ${c.status}">${statusLabel(c.status)}</span><span class="dur">${icon("clock", "mini")} ${esc(c.duration)}</span></div>
+          <h3>${esc(c.name)}</h3>
+          <p>${esc(c.tagline)}</p>
+          <a class="more" href="courses.html#${c.id}">View details ${icon("arrow", "mini")}</a>
+        </div>
       </article>`;
   }
 
@@ -193,6 +241,7 @@
 
   function render() {
     $$('[data-render="featured-courses"]').forEach((el) => (el.innerHTML = COURSES.slice(0, 6).map(courseCard).join("")));
+    $$('[data-render="bento"]').forEach((el) => (el.innerHTML = COURSES.map(bentoCard).join("")));
     $$('[data-render="all-courses-cards"]').forEach((el) => (el.innerHTML = COURSES.map(courseCard).join("")));
     $$('[data-render="course-details"]').forEach((el) => (el.innerHTML = COURSES.map(courseDetail).join("")));
     $$('[data-render="latest-posts"]').forEach((el) => {
@@ -324,8 +373,51 @@
     items.forEach((n) => io.observe(n));
   }
 
+  function visuals() {
+    const typed = $("#typed");
+    if (typed) {
+      const phrases = ["learn --skill python", "learn --skill web-development", "learn --skill microsoft-office", "learn --skill networking", "learn --skill robotics", "learn --skill typing"];
+      const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (still) typed.textContent = phrases[0];
+      else {
+        let i = 0, j = 0, del = false;
+        (function tick() {
+          const w = phrases[i];
+          typed.textContent = " " + w.slice(0, j);
+          if (!del && j < w.length) j++;
+          else if (!del) { del = true; return setTimeout(tick, 1400); }
+          else if (j > 0) j--;
+          else { del = false; i = (i + 1) % phrases.length; }
+          setTimeout(tick, del ? 28 : 65);
+        })();
+      }
+    }
+    const ticker = $("#ticker");
+    if (ticker) {
+      const words = ["Python", "HTML", "CSS", "JavaScript", "Java", "C++", "Word", "Excel", "PowerPoint", "Networking", "Robotics", "Typing"];
+      const row = words.map((w) => `<span>${w}</span>`).join("");
+      ticker.innerHTML = row + row;
+    }
+    const road = $("#roadmap");
+    if (road) {
+      road.innerHTML = COURSES.map((c, i) => `
+        <li class="${c.status === "available" ? "" : "soon"}">
+          <div class="node">${i + 1}</div>
+          <div><a href="courses.html#${c.id}">${esc(c.name)}</a><small>${statusLabel(c.status)}</small></div>
+        </li>`).join("");
+    }
+    document.addEventListener("pointermove", (e) => {
+      const card = e.target.closest && e.target.closest(".card");
+      if (!card) return;
+      const r = card.getBoundingClientRect();
+      card.style.setProperty("--x", e.clientX - r.left + "px");
+      card.style.setProperty("--y", e.clientY - r.top + "px");
+    });
+  }
+
   buildChrome();
   render();
+  visuals();
   initRegistration();
   const contact = $("#contact-form"); if (contact) wireForm(contact, "message");
   $$("[data-icon]").forEach((el) => (el.innerHTML = icon(el.dataset.icon)));

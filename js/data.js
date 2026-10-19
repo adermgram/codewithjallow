@@ -12,14 +12,14 @@ const SITE = {
   name: "Code with Jallow",
   parent: "JTECH ACADEMY",
   tagline: "Digital skills for every learner in Basse",
-  phones: ["866878690", "835008845"],
-  whatsapp: "220866878690", // +220 (Gambia) + number, no spaces or plus sign
+  phones: ["5008845"],      // shown as +220 5008845
+  whatsapp: "2205008845",   // +220 (Gambia) + number, no spaces or plus sign
   email: "",                                    // add an email address when you have one
   location: "Basse, Upper River Region, The Gambia",
   social: {
-    facebook: "",   // e.g. "https://facebook.com/codewithjallow"
-    instagram: "",
-    tiktok: "",
+    facebook: "https://web.facebook.com/mudasiru.jallow.3",
+    instagram: "https://www.instagram.com/mu_01_jallow",
+    tiktok: "https://www.tiktok.com/@codewithjallow",
     youtube: "",
     linkedin: ""
   },
@@ -205,7 +205,7 @@ const POSTS = [
       "JTECH Academy is opening its doors with practical ICT training for students, youths and community members.",
     body:
       "We are starting Code with Jallow to bring practical digital skills to Basse and the communities around it, from first-time computer users to future programmers. Registration for our first courses is open. Replace this sample post with your own news.",
-    image: "images/jallow-tech-for-every-child.jpg"
+    image: "images/class-teaching.jpg"
   }
 ];
 
@@ -222,6 +222,18 @@ const GALLERY = [
     src: "images/jallow-tech-for-every-child.jpg",
     caption: "Technology for Every Child",
     category: "Events"
+  },
+  {
+    type: "image",
+    src: "images/class-network-toolkit.jpg",
+    caption: "Hands-on networking workshop",
+    category: "Classes"
+  },
+  {
+    type: "image",
+    src: "images/class-teaching.jpg",
+    caption: "Teaching in the classroom",
+    category: "Classes"
   }
   // Add more like this:
   // { type: "image", src: "images/class-01.jpg", caption: "Our first class", category: "Classes" },

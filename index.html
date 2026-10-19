@@ -9,15 +9,15 @@
   <meta property="og:title" content="Code with Jallow | ICT & Coding Training in Basse">
   <meta property="og:description" content="Practical digital skills training for students, youths and communities in Basse, The Gambia.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="images/jallow-tech-for-every-child.jpg">
-  <meta name="theme-color" content="#0a1b36">
-  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <meta property="og:image" content="images/logo.jpg">
+  <meta name="theme-color" content="#040913">
+  <link rel="icon" href="images/logo.jpg" type="image/jpeg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"EducationalOrganization","name":"Code with Jallow","alternateName":"JTECH Academy","description":"ICT and programming training in Basse, The Gambia","address":{"@type":"PostalAddress","addressLocality":"Basse","addressRegion":"Upper River Region","addressCountry":"GM"},"telephone":["+220866878690","+220835008845"]}
+  {"@context":"https://schema.org","@type":"EducationalOrganization","name":"Code with Jallow","alternateName":"JTECH Academy","description":"ICT and programming training in Basse, The Gambia","address":{"@type":"PostalAddress","addressLocality":"Basse","addressRegion":"Upper River Region","addressCountry":"GM"},"telephone":"+2205008845"}
   </script>
 </head>
 <body data-page="home">
@@ -25,14 +25,17 @@
   <header id="site-header"></header>
 
   <main id="main">
-    <section class="hero">
+    <!-- HERO -->
+    <section class="hero grid-bg">
+      <canvas id="net" aria-hidden="true"></canvas>
+      <div class="orb a"></div><div class="orb b"></div>
       <div class="container">
         <div>
           <span class="eyebrow">JTECH Academy · Basse, The Gambia</span>
-          <h1>Learn the digital skills that <em>open doors</em>.</h1>
-          <p class="lead">Code with Jallow brings practical computer and coding training to students, youths and families in Basse and the surrounding communities, from your very first click to your first program.</p>
+          <h1 data-split>Code your way into <span class="gtext">the future.</span></h1>
+          <p class="lead">Practical computer and coding training for students, youths and families in Basse and the surrounding communities, from your very first click to your first program.</p>
           <div class="btn-row">
-            <a class="btn btn-sun" href="register.html">Register for a Course</a>
+            <a class="btn btn-primary" href="register.html">Register for a Course</a>
             <a class="btn btn-ghost" href="courses.html">Explore Our Courses</a>
             <a class="btn btn-ghost" href="contact.html">Contact Us</a>
           </div>
@@ -42,92 +45,162 @@
             <span class="badge"><span data-icon="check"></span>Based in Basse</span>
           </div>
         </div>
-        <div class="hero-visual">
-          <div class="hero-photo"><img src="images/jallow-speaking.jpg" alt="Jallow speaking at a digital innovation event" width="828" height="958" fetchpriority="high"></div>
-          <div class="float-chip"><span class="dot"></span>Registration open</div>
-          <div class="code-card" aria-hidden="true">
-            <span class="c"># your first program</span><br>
-            <span class="k">print</span>(<span class="s">"Hello, Basse!"</span>)
+
+        <div class="hero-stage">
+          <div class="ide" id="ide">
+            <div class="ide-bar"><i></i><i></i><i></i>
+              <div class="ide-tabs"><button class="on" data-tab="py">main.py</button><button data-tab="html">index.html</button></div>
+            </div>
+            <pre class="ide-code" id="ide-code" aria-label="Sample code being typed"></pre>
+            <div class="ide-out" id="ide-out" aria-live="off"></div>
+          </div>
+          <div class="glass chip-live"><span class="dot"></span>Registration open</div>
+          <div class="glass chip-teacher"><img src="images/jallow-speaking.jpg" alt="" width="44" height="44"><div><strong>Learn with Jallow</strong><small>Founder · JTECH Academy</small></div></div>
+          <img class="badge-logo" src="images/logo.jpg" alt="Code with Jallow logo" width="92" height="92">
+        </div>
+      </div>
+    </section>
+
+    <!-- TICKER -->
+    <div class="marquee" aria-hidden="true"><div class="marquee-track" id="ticker"></div></div>
+
+    <!-- STATS -->
+    <section class="section" style="padding-bottom:0">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat"><strong data-count="7">7</strong><span>Courses &amp; tracks</span></div>
+          <div class="stat"><strong data-count="2">2</strong><span>Ways to learn: in-person &amp; online</span></div>
+          <div class="stat"><strong data-count="0">0</strong><span>Experience needed to start</span></div>
+          <div class="stat"><strong data-count="1">1</strong><span>Mission: digital skills for Basse</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MISSION (words light up on scroll) -->
+    <section class="section">
+      <div class="container">
+        <span class="eyebrow">Our mission</span>
+        <p class="mission" data-scrub>We exist to improve digital skills and computer literacy in Basse and the surrounding communities, so that more young people can learn, earn and create with technology.</p>
+        <a class="btn btn-ghost" href="about.html">More about us</a>
+      </div>
+    </section>
+
+    <!-- COURSES BENTO -->
+    <section class="section alt">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">What we teach</span>
+          <h2>Pick your path. <span class="gtext">Start today.</span></h2>
+          <p class="lead">From first-time computer users to future developers. Some courses are open now, others are coming soon.</p>
+        </div>
+        <div class="bento" data-render="bento"></div>
+        <p class="center" style="margin-top:44px"><a class="btn btn-primary" href="courses.html">See fees, schedules &amp; outcomes</a></p>
+      </div>
+    </section>
+
+    <!-- MEET JALLOW -->
+    <section class="section">
+      <div class="container split">
+        <div class="portrait reveal">
+          <div class="ring"></div>
+          <img src="images/jallow-speaking.jpg" alt="Jallow speaking at a digital innovation event" loading="lazy" width="828" height="958">
+          <div class="glass tag-a"><strong>Basse</strong><small>Upper River Region</small></div>
+          <div class="glass tag-b"><strong>JTECH Academy</strong><small>Founder &amp; instructor</small></div>
+        </div>
+        <div class="reveal">
+          <span class="eyebrow">Meet your instructor</span>
+          <h2>Learn from someone <span class="gtext">from your community.</span></h2>
+          <p class="lead">Jallow founded Code with Jallow under JTECH Academy to bring practical ICT skills to Basse, taught in a friendly, hands-on way that makes technology feel possible for everyone.</p>
+          <ul class="checks">
+            <li><span data-icon="check"></span>Start from the basics, at your own pace.</li>
+            <li><span data-icon="check"></span>Practice on real tasks, not just slides.</li>
+            <li><span data-icon="check"></span>Workshops and outreach across the community.</li>
+          </ul>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="register.html">Join a class</a>
+            <a class="btn btn-ghost" data-wa="Hello Jallow! I would like to know more about your classes." href="#" target="_blank" rel="noopener">Message on WhatsApp</a>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="stats">
-      <div class="container">
-        <div class="stats-grid">
-          <div class="stat"><strong>7</strong><span>Courses &amp; tracks</span></div>
-          <div class="stat"><strong>Beginner</strong><span>Friendly teaching</span></div>
-          <div class="stat"><strong>In-person</strong><span>+ online options</span></div>
-          <div class="stat"><strong>Basse</strong><span>Upper River Region</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container split">
-        <div>
-          <span class="eyebrow">Our mission</span>
-          <h2>Digital skills for every learner in Basse.</h2>
-          <p class="lead">Our mission is to improve digital skills and computer literacy in Basse and the surrounding communities, so that more young people can learn, earn and create with technology.</p>
-          <ul class="checks">
-            <li><span data-icon="check"></span>No experience needed. We start from the basics.</li>
-            <li><span data-icon="check"></span>Hands-on practice, not just theory.</li>
-            <li><span data-icon="check"></span>Taught locally, by someone from the community.</li>
-          </ul>
-          <a class="btn btn-outline" href="about.html">More about us</a>
-        </div>
-        <img src="images/jallow-tech-for-every-child.jpg" alt="Jallow holding a 'Technology for Every Child' frame" loading="lazy" width="828" height="522">
-      </div>
-    </section>
-
-    <section class="section soft">
+    <!-- ROADMAP -->
+    <section class="section alt">
       <div class="container">
         <div class="section-head center">
-          <span class="eyebrow">What we teach</span>
-          <h2>Courses for every starting point</h2>
-          <p class="lead">From first-time computer users to future developers. Some courses are open now and others are coming soon.</p>
+          <span class="eyebrow">Your learning journey</span>
+          <h2>One path, <span class="gtext">seven steps</span></h2>
+          <p class="lead">Start with the basics and grow into programming, web development, networking and robotics.</p>
         </div>
-        <div class="grid grid-3" data-render="featured-courses"></div>
-        <p class="center" style="margin-top:36px"><a class="btn btn-primary" href="courses.html">See fees, schedules &amp; outcomes</a></p>
+        <ol class="roadmap" id="roadmap"></ol>
       </div>
     </section>
 
+    <!-- IN ACTION -->
     <section class="section">
       <div class="container">
-        <div class="section-head center">
-          <span class="eyebrow">Why learn with us</span>
-          <h2>Simple, practical and close to home</h2>
+        <div class="section-head">
+          <span class="eyebrow">In action</span>
+          <h2>Real classes. <span class="gtext">Real skills.</span></h2>
         </div>
-        <div class="grid grid-3">
-          <div class="card reveal"><div class="icon-box" data-icon="users"></div><h3>Beginner friendly</h3><p>Patient teaching for students, youths and adults, whatever your level or age.</p></div>
-          <div class="card reveal"><div class="icon-box" data-icon="code"></div><h3>Learn by doing</h3><p>Every lesson includes real practice, from typing drills to building a working website.</p></div>
-          <div class="card reveal"><div class="icon-box" data-icon="heart"></div><h3>Rooted in community</h3><p>We run workshops and outreach so that digital literacy reaches the whole community.</p></div>
+        <div class="strip">
+          <figure class="reveal"><img src="images/class-network-toolkit.jpg" alt="Networking workshop with a cable toolkit" loading="lazy"><figcaption>Hands-on networking workshop</figcaption></figure>
+          <figure class="reveal"><img src="images/class-teaching.jpg" alt="Teaching a class" loading="lazy" style="object-position:30% 50%"><figcaption>Teaching in the classroom</figcaption></figure>
+          <figure class="reveal"><img src="images/jallow-tech-for-every-child.jpg" alt="Technology for Every Child event" loading="lazy" style="object-position:50% 40%"><figcaption>Community events</figcaption></figure>
         </div>
+        <p style="margin-top:32px"><a class="btn btn-ghost" href="gallery.html">Open the gallery</a></p>
       </div>
     </section>
 
-    <section class="section soft">
+    <!-- NEWS -->
+    <section class="section alt">
       <div class="container">
         <div class="section-head">
           <span class="eyebrow">News &amp; activities</span>
-          <h2>Latest from our classes and community</h2>
+          <h2>Latest from our <span class="gtext">community</span></h2>
         </div>
         <div class="grid grid-3" data-render="latest-posts"></div>
-        <p style="margin-top:32px"><a class="btn btn-outline" href="news.html">All news &amp; projects</a></p>
+        <p style="margin-top:32px"><a class="btn btn-ghost" href="news.html">All news &amp; projects</a></p>
       </div>
     </section>
 
+    <!-- FAQ -->
     <section class="section">
+      <div class="container faq-wrap">
+        <div>
+          <span class="eyebrow">Questions</span>
+          <h2>Good to <span class="gtext">know</span></h2>
+          <p class="lead">Can't find your answer? Message us on WhatsApp and we will reply.</p>
+        </div>
+        <div class="faq">
+          <details><summary>Do I need any experience?</summary><p>No. Our beginner courses start from the very basics, and you can move on to programming and web development when you are ready.</p></details>
+          <details><summary>Who can join?</summary><p>Students, youths and adults from Basse and the surrounding communities. Fill in the registration form with your age and school or occupation.</p></details>
+          <details><summary>Are classes in-person or online?</summary><p>Classes are mainly in-person in Basse. Some courses, such as Programming and Web Development, also offer an online option. Each course page shows its learning mode.</p></details>
+          <details><summary>How much do courses cost?</summary><p>Each course page has a fee section. Fees are being finalised, so contact us to confirm the current price before you register.</p></details>
+          <details><summary>What happens after I register?</summary><p>You will see a confirmation message straight away, and we will contact you by phone to confirm your place, schedule and fee.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="padding-top:0">
       <div class="container">
         <div class="cta">
-          <div style="position:relative;z-index:1">
-            <h2>Ready to start learning?</h2>
+          <div>
+            <h2>Ready to start <span class="gtext">learning?</span></h2>
             <p>Pick a course, fill in a short form, and we will contact you with the next steps.</p>
+            <div class="btn-row">
+              <a class="btn btn-primary" href="register.html">Register for a Course</a>
+              <a class="btn btn-ghost" data-wa="Hello! I would like to know more about Code with Jallow." href="#" target="_blank" rel="noopener">Chat on WhatsApp</a>
+            </div>
           </div>
-          <div class="btn-row">
-            <a class="btn btn-sun" href="register.html">Register for a Course</a>
-            <a class="btn btn-ghost" data-wa="Hello! I would like to know more about Code with Jallow." href="#" target="_blank" rel="noopener">Chat on WhatsApp</a>
+          <div class="terminal" aria-hidden="true">
+            <div class="bar"><i></i><i></i><i></i></div>
+<pre><span class="m"># takes about two minutes</span>
+<span class="g">$</span> register --course <span class="y">"your choice"</span>
+<span class="g">✔</span> details received
+<span class="g">✔</span> we will call you to confirm
+<span class="g">$</span> start --learning<span class="caret"></span></pre>
           </div>
         </div>
       </div>
@@ -137,5 +210,6 @@
   <footer id="site-footer"></footer>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/fx.js"></script>
 </body>
 </html>
