@@ -262,6 +262,9 @@ me = <i class="f">Student</i>()
   }
 
   function render() {
+    $$("[data-course-count]").forEach((el) => { el.dataset.count = COURSES.length; el.textContent = COURSES.length; });
+    $$("[data-founder-photo]").forEach((el) => { el.src = FOUNDER.photo; el.alt = FOUNDER.name; });
+    $$("[data-founder-name]").forEach((el) => (el.textContent = FOUNDER.name));
     $$('[data-render="founder"]').forEach((el) => (el.innerHTML = founderSection(FOUNDER)));
     $$('[data-render="featured-courses"]').forEach((el) => (el.innerHTML = COURSES.slice(0, 6).map(courseCard).join("")));
     $$('[data-render="bento"]').forEach((el) => (el.innerHTML = COURSES.map(bentoCard).join("")));
@@ -375,6 +378,8 @@ me = <i class="f">Student</i>()
     $("#grade", form).innerHTML = `<option value="" disabled selected>Choose…</option>` + FORM.grades.map((g) => `<option>${esc(g)}</option>`).join("");
     $("#level-options", form).innerHTML = FORM.levels.map((l, i) => `<label><input type="radio" name="level" value="${esc(l)}"${i ? "" : " required"}> ${esc(l)}</label>`).join("");
     $("#interest-options", form).innerHTML = FORM.interests.map((t) => `<label><input type="checkbox" name="interests" value="${esc(t)}"> ${esc(t)}</label>`).join("");
+    const q = COURSES.find((c) => c.id === new URLSearchParams(location.search).get("course"));
+    if (q) $$('input[name="interests"]', form).forEach((b) => (b.checked = q.interests.includes(b.value)));
     wireForm(form, "registration");
   }
 

@@ -61,10 +61,12 @@ const FORM = {
 /* status:  "available"  = Available Now   |   "coming-soon" = Coming Soon
    fee:     leave "" until the price is final (shows "Fee to be announced")
    modes:   which learning modes the course offers: "In-person", "Online"
-   registration: "Open" | "Closed" | "Opening soon"                           */
+   registration: "Open" | "Closed" | "Opening soon"
+   interests: which registration-form options get ticked (must match FORM.interests) */
 const COURSES = [
   {
     id: "basic-computer-skills",
+    interests: ["Computer Basics", "Internet & Digital Skills", "Internet & Digital Safety"],   // pre-ticked on the registration form
     name: "Basic Computer Skills",
     icon: "monitor",
     status: "available",
@@ -91,6 +93,7 @@ const COURSES = [
   },
   {
     id: "typing-skills",
+    interests: ["Typing"],   // pre-ticked on the registration form
     name: "Typing Skills",
     icon: "keyboard",
     status: "available",
@@ -115,6 +118,7 @@ const COURSES = [
   },
   {
     id: "microsoft-office",
+    interests: ["Microsoft Word", "Microsoft Excel", "Microsoft PowerPoint"],   // pre-ticked on the registration form
     name: "Microsoft Office",
     icon: "file-text",
     status: "available",
@@ -135,6 +139,7 @@ const COURSES = [
   },
   {
     id: "programming",
+    interests: ["Python", "Java", "C++"],   // pre-ticked on the registration form
     name: "Programming",
     icon: "code",
     status: "available",
@@ -155,6 +160,7 @@ const COURSES = [
   },
   {
     id: "web-development",
+    interests: ["Web Development"],   // pre-ticked on the registration form
     name: "Web Development",
     icon: "globe",
     status: "available",
@@ -176,6 +182,7 @@ const COURSES = [
   },
   {
     id: "networking",
+    interests: ["Other"],   // pre-ticked on the registration form
     name: "Networking",
     icon: "network",
     status: "coming-soon",
@@ -200,6 +207,7 @@ const COURSES = [
   },
   {
     id: "robotics",
+    interests: ["Other"],   // pre-ticked on the registration form
     name: "Introduction to Robotics",
     icon: "cpu",
     status: "coming-soon",
