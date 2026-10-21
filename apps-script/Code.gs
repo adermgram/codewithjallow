@@ -6,7 +6,7 @@
 const NOTIFY_EMAIL = ""; // optional: your email, to get a notification for each submission
 
 const HEADERS = {
-  Registrations: ["Submitted", "Name", "Age", "Gender", "Phone", "Email", "School/Occupation", "Course", "Mode", "Status", "Notes"],
+  Registrations: ["Submitted", "Email", "Name", "Gender", "Class/Grade", "WhatsApp", "Computer level", "Computer at home", "Interested in", "Why join", "Student", "Status", "Notes"],
   Messages: ["Submitted", "Name", "Phone", "Email", "Message", "Handled"]
 };
 
@@ -24,7 +24,7 @@ function doPost(e) {
   }
   const now = new Date();
   if (tab === "Registrations") {
-    sh.appendRow([now, p.name, p.age, p.gender, "'" + p.phone, p.email, p.occupation, p.courseName, p.mode, "New", ""]);
+    sh.appendRow([now, p.email, p.name, p.gender, p.grade, "'" + p.phone, p.level, p.computer, p.interests, p.reason, p.student, "New", ""]);
   } else {
     sh.appendRow([now, p.name, "'" + p.phone, p.email, p.message, "No"]);
   }

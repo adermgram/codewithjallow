@@ -21,11 +21,41 @@ const SITE = {
     instagram: "https://www.instagram.com/mu_01_jallow",
     tiktok: "https://www.tiktok.com/@codewithjallow",
     youtube: "",
-    linkedin: ""
+    linkedin: "https://in.linkedin.com/in/mudasiru-jallow"
   },
   // Paste your Google Apps Script web-app URL here (see README.md, step 2).
   // Until then, forms fall back to sending a prefilled WhatsApp message.
   formEndpoint: ""
+};
+
+/* "Meet the founder" section on the About page.
+   photo:       file inside /images
+   highlights:  the two small cards on the photo. icon: "cap" | "award" | "code" | "cpu" | "users"
+   bio:         one string per paragraph                                              */
+const FOUNDER = {
+  name: "Mudasiru Jallow",
+  role: "Founder, Code with Jallow",
+  photo: "images/founder.jpg",
+  highlights: [
+    { icon: "cap", title: "B.Sc. Computer Science", text: "Specialization in AI / ML" },
+    { icon: "award", title: "Hackathon winner", text: "Multiple wins" }
+  ],
+  bio: [
+    "Mudasiru Jallow is a software developer and the founder of Code with Jallow. He holds a bachelor's degree in Computer Science with a specialization in Artificial Intelligence and Machine Learning.",
+    "He has won multiple hackathons, building real solutions under pressure, and he brings that same hands-on, problem-solving approach to every class in Basse."
+  ]
+};
+
+/* Registration form options (these mirror the Google Form) */
+const FORM = {
+  grades: ["Grade 7", "Grade 8", "Grade 9", "Grade 10", "Grade 11", "Grade 12", "University / College", "Not currently in school", "Other"],
+  levels: [
+    "Beginner – I have little or no computer experience",
+    "Basic – I can perform some simple computer tasks",
+    "Intermediate – I am comfortable using computers",
+    "Advanced – I already have good computer knowledge"
+  ],
+  interests: ["Computer Basics", "Typing", "Microsoft Word", "Microsoft Excel", "Microsoft PowerPoint", "Internet & Digital Skills", "Internet & Digital Safety", "Python", "Java", "C++", "Web Development", "Other"]
 };
 
 /* status:  "available"  = Available Now   |   "coming-soon" = Coming Soon

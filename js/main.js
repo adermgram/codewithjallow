@@ -28,7 +28,9 @@
     youtube: '<path d="M2.5 17a24.1 24.1 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.6 49.6 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.1 24.1 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.6 49.6 0 0 1-16.2 0A2 2 0 0 1 2.5 17z"/><path d="m10 15 5-3-5-3z"/>',
     linkedin: '<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/>',
     tiktok: '<path d="M9 12a4 4 0 1 0 4 4V3a5 5 0 0 0 5 5"/>',
-    arrow: '<path d="M5 12h14M12 5l7 7-7 7"/>'
+    arrow: '<path d="M5 12h14M12 5l7 7-7 7"/>',
+    award: '<circle cx="12" cy="8" r="6"/><path d="M15.5 13.5 17 22l-5-3-5 3 1.5-8.5"/>',
+    cap: '<path d="M22 10 12 5 2 10l10 5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/>'
   };
   const icon = (n, cls) =>
     `<svg ${cls ? `class="${cls}"` : ""} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${P[n] || ""}</svg>`;
@@ -239,7 +241,28 @@ me = <i class="f">Student</i>()
     return `<figure data-cat="${esc(g.category)}" data-i="${i}"><img src="${esc(g.src)}" alt="${esc(g.caption)}" loading="lazy"><figcaption>${esc(g.caption)}</figcaption></figure>`;
   }
 
+  function founderSection(f) {
+    const [tagA, tagB] = f.highlights;
+    const glass = (h, cls) => h ? `<div class="glass ${cls}">${icon(h.icon)}<div><strong>${esc(h.title)}</strong><small>${esc(h.text)}</small></div></div>` : "";
+    return `
+      <div class="founder-grid">
+        <div class="portrait reveal">
+          <div class="ring"></div>
+          <img src="${esc(f.photo)}" alt="${esc(f.name)}" loading="lazy">
+          ${glass(tagA, "tag-a")}${glass(tagB, "tag-b")}
+        </div>
+        <div class="reveal">
+          <span class="eyebrow">Meet the founder</span>
+          <h2>${esc(f.name)}</h2>
+          <p class="role">${esc(f.role)}</p>
+          ${f.bio.map((p) => `<p>${esc(p)}</p>`).join("")}
+          ${SITE.social.linkedin ? `<a class="btn btn-primary" href="${esc(SITE.social.linkedin)}" target="_blank" rel="noopener">${icon("linkedin")} Connect on LinkedIn</a>` : ""}
+        </div>
+      </div>`;
+  }
+
   function render() {
+    $$('[data-render="founder"]').forEach((el) => (el.innerHTML = founderSection(FOUNDER)));
     $$('[data-render="featured-courses"]').forEach((el) => (el.innerHTML = COURSES.slice(0, 6).map(courseCard).join("")));
     $$('[data-render="bento"]').forEach((el) => (el.innerHTML = COURSES.map(bentoCard).join("")));
     $$('[data-render="all-courses-cards"]').forEach((el) => (el.innerHTML = COURSES.map(courseCard).join("")));
@@ -315,8 +338,14 @@ me = <i class="f">Student</i>()
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       err.classList.remove("show");
-      const data = Object.fromEntries(new FormData(form).entries());
+      const fd = new FormData(form);
+      const data = Object.fromEntries(fd.entries());
       if (data.website) return; // honeypot: bots fill this, humans never see it
+      if (kind === "registration") {
+        const boxes = $$('input[name="interests"]', form);
+        boxes[0].setCustomValidity(boxes.some((b) => b.checked) ? "" : "Please choose at least one area.");
+        data.interests = fd.getAll("interests").join(", ");
+      }
       if (!form.checkValidity()) { form.reportValidity(); return; }
       const btn = $('button[type="submit"]', form);
       const label = btn.textContent; btn.disabled = true; btn.textContent = "Sending…";
@@ -324,9 +353,7 @@ me = <i class="f">Student</i>()
         data.type = kind; data.submitted = new Date().toISOString();
         let summary;
         if (kind === "registration") {
-          const c = COURSES.find((x) => x.id === data.course);
-          data.courseName = c ? c.name : data.course;
-          summary = `NEW REGISTRATION\nName: ${data.name}\nAge: ${data.age}\nGender: ${data.gender || "-"}\nPhone: ${data.phone}\nEmail: ${data.email || "-"}\nSchool/Occupation: ${data.occupation}\nCourse: ${data.courseName}\nMode: ${data.mode}`;
+          summary = `NEW REGISTRATION\nName: ${data.name}\nEmail: ${data.email}\nGender: ${data.gender}\nClass/Grade: ${data.grade}\nWhatsApp: ${data.phone}\nComputer level: ${data.level}\nComputer at home: ${data.computer}\nInterested in: ${data.interests}\nWhy join: ${data.reason}\nStudent: ${data.student}`;
         } else {
           summary = `MESSAGE from ${data.name} (${data.phone || data.email || "no contact"})\n${data.message}`;
         }
@@ -345,23 +372,9 @@ me = <i class="f">Student</i>()
 
   function initRegistration() {
     const form = $("#register-form"); if (!form) return;
-    const sel = $("#course", form);
-    sel.innerHTML = `<option value="" disabled selected>Choose a course…</option>` +
-      COURSES.map((c) => `<option value="${c.id}">${esc(c.name)}${c.status === "coming-soon" ? " (Coming Soon, waiting list)" : ""}</option>`).join("");
-    const q = new URLSearchParams(location.search).get("course");
-    if (q && COURSES.some((c) => c.id === q)) sel.value = q;
-
-    const setModes = () => {
-      const c = COURSES.find((x) => x.id === sel.value);
-      $$('input[name="mode"]', form).forEach((r) => {
-        const allowed = !c || c.modes.includes(r.value);
-        r.disabled = !allowed; r.closest("label").classList.toggle("disabled", !allowed);
-        if (!allowed) r.checked = false;
-      });
-      const hint = $("#mode-hint");
-      if (hint) hint.textContent = c ? `Offered: ${c.modes.join(" and ")}` : "Online is available for selected courses only.";
-    };
-    sel.addEventListener("change", setModes); setModes();
+    $("#grade", form).innerHTML = `<option value="" disabled selected>Choose…</option>` + FORM.grades.map((g) => `<option>${esc(g)}</option>`).join("");
+    $("#level-options", form).innerHTML = FORM.levels.map((l, i) => `<label><input type="radio" name="level" value="${esc(l)}"${i ? "" : " required"}> ${esc(l)}</label>`).join("");
+    $("#interest-options", form).innerHTML = FORM.interests.map((t) => `<label><input type="checkbox" name="interests" value="${esc(t)}"> ${esc(t)}</label>`).join("");
     wireForm(form, "registration");
   }
 

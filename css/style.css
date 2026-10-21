@@ -663,3 +663,33 @@ body[data-page="about"] .section { padding: clamp(48px, 6vw, 84px) 0; }
   .btn { padding: 16px 22px; }
   .section { padding: 56px 0; }
 }
+
+/* ===== Founder section ===== */
+.section.founder {
+  --head: #fff; --muted: #8da2c6; --line: rgba(140,180,255,.2); --text: #e9f1ff; --body-text: #c5d4ee;
+  --cyan: #00e0ff; --mint: #22f2c0; --grad: linear-gradient(120deg, #00e0ff, #1a73ff);
+  color-scheme: dark; color: var(--text); overflow: hidden;
+  background: radial-gradient(900px 500px at 85% 10%, rgba(26,115,255,.35), transparent 60%), linear-gradient(160deg, #06183a, #040913);
+}
+.section.founder .eyebrow { background: rgba(34,242,192,.07); border-color: rgba(34,242,192,.35); }
+.section.founder .eyebrow::before { box-shadow: 0 0 12px var(--mint); }
+.section.founder .btn-primary { color: #00131f; box-shadow: 0 12px 34px rgba(0,150,255,.4); }
+.section.founder .portrait .ring { opacity: .45; }
+.founder-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(40px, 7vw, 96px); align-items: center; }
+.founder-grid h2 { margin-bottom: 6px; }
+.founder-grid .role { font: 500 .85rem var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--mint); margin-bottom: 24px; }
+.founder-grid p:not(.role) { color: var(--body-text); font-size: 1.08rem; max-width: 56ch; }
+.founder-grid .btn { margin-top: 12px; }
+.portrait .glass { display: flex; align-items: center; gap: 12px; white-space: nowrap; }
+.portrait .glass > svg { width: 26px; height: 26px; color: var(--cyan); flex: none; }
+.section.founder .portrait > img { aspect-ratio: 4/5; object-position: 52% 20%; }
+@media (max-width: 1020px) { .founder-grid { grid-template-columns: 1fr; } .portrait { max-width: 420px; } }
+@media (max-width: 620px) { .portrait .glass { padding: 10px 14px; } .portrait .tag-a { bottom: -18px; } .portrait .tag-b { top: 14px; } .founder-grid { gap: 52px; } }
+
+/* registration option lists */
+.option-list { display: grid; gap: 10px; }
+.option-list.cols { grid-template-columns: repeat(2, 1fr); }
+.option-list label { display: flex; align-items: center; gap: 12px; font-weight: 500; padding: 13px 16px; border: 1px solid var(--line); border-radius: 12px; cursor: pointer; background: var(--input-bg); }
+.option-list input { width: 20px; flex: none; accent-color: var(--cyan); }
+.option-list label:has(input:checked) { border-color: var(--cyan); background: rgba(10,134,201,.1); }
+@media (max-width: 620px) { .option-list.cols { grid-template-columns: 1fr; } }

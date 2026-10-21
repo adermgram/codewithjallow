@@ -30,31 +30,48 @@
           <div class="form-error" role="alert"></div>
           <form id="register-form" novalidate>
             <div class="form-grid">
+              <div class="field full"><label for="email">Email</label>
+                <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@example.com"></div>
               <div class="field full"><label for="name">Full name</label>
                 <input id="name" name="name" required autocomplete="name" placeholder="e.g. Awa Jallow"></div>
-              <div class="field"><label for="age">Age</label>
-                <input id="age" name="age" type="number" min="5" max="99" required inputmode="numeric" placeholder="e.g. 17"></div>
-              <div class="field"><label for="gender">Gender <span class="opt">(optional)</span></label>
-                <select id="gender" name="gender"><option value="">Prefer not to say</option><option>Female</option><option>Male</option></select></div>
-              <div class="field"><label for="phone">Phone number</label>
-                <input id="phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" placeholder="e.g. 7012345"></div>
-              <div class="field"><label for="email">Email address <span class="opt">(optional)</span></label>
-                <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com"></div>
-              <div class="field full"><label for="occupation">School or occupation</label>
-                <input id="occupation" name="occupation" required placeholder="e.g. Grade 11 student at Basse Senior School"></div>
-              <div class="field full"><label for="course">Course of interest</label>
-                <select id="course" name="course" required></select></div>
               <fieldset class="field full" style="border:0;padding:0;margin:0">
-                <legend style="margin-bottom:8px">Preferred learning mode</legend>
+                <legend style="margin-bottom:8px">Gender</legend>
                 <div class="radio-row">
-                  <label><input type="radio" name="mode" value="In-person" required checked> In-person</label>
-                  <label><input type="radio" name="mode" value="Online"> Online</label>
+                  <label><input type="radio" name="gender" value="Male" required> Male</label>
+                  <label><input type="radio" name="gender" value="Female"> Female</label>
                 </div>
-                <span class="note" id="mode-hint"></span>
+              </fieldset>
+              <div class="field"><label for="grade">Class / Grade</label>
+                <select id="grade" name="grade" required></select></div>
+              <div class="field"><label for="phone">WhatsApp number</label>
+                <input id="phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" placeholder="e.g. 7012345"></div>
+              <fieldset class="field full" style="border:0;padding:0;margin:0">
+                <legend style="margin-bottom:8px">How would you describe your current computer knowledge?</legend>
+                <div class="option-list" id="level-options"></div>
+              </fieldset>
+              <fieldset class="field full" style="border:0;padding:0;margin:0">
+                <legend style="margin-bottom:8px">Do you currently have access to a computer or laptop at home?</legend>
+                <div class="radio-row">
+                  <label><input type="radio" name="computer" value="Yes, I have my own" required> Yes, I have my own</label>
+                  <label><input type="radio" name="computer" value="No"> No</label>
+                </div>
+              </fieldset>
+              <fieldset class="field full" style="border:0;padding:0;margin:0">
+                <legend style="margin-bottom:8px">Which areas are you most interested in?</legend>
+                <div class="option-list cols" id="interest-options"></div>
+              </fieldset>
+              <div class="field full"><label for="reason">Why do you want to join Code with Jallow?</label>
+                <textarea id="reason" name="reason" required placeholder="Tell us what you hope to learn or achieve"></textarea></div>
+              <fieldset class="field full" style="border:0;padding:0;margin:0">
+                <legend style="margin-bottom:8px">Are you a student?</legend>
+                <div class="radio-row">
+                  <label><input type="radio" name="student" value="Yes" required> Yes</label>
+                  <label><input type="radio" name="student" value="No"> No</label>
+                </div>
               </fieldset>
               <div class="hp" aria-hidden="true"><label>Leave this empty <input name="website" tabindex="-1" autocomplete="off"></label></div>
               <label class="consent full"><input type="checkbox" name="consent" required>
-                <span>I agree that Code with Jallow may store my details to manage my registration and contact me about my course. My information is kept private and is never shared or sold.</span></label>
+                <span>I confirm that the information provided is accurate, and I agree to the programme schedule and monthly fee. Code with Jallow stores my details only to manage my registration; they are never shared or sold.</span></label>
               <div class="field full"><button class="btn btn-primary" type="submit">Submit registration</button></div>
             </div>
           </form>
