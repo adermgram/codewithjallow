@@ -40,6 +40,9 @@ Short, rarely changed text is in the page files, not `data.js`:
 - **Logo and favicon**: `images/logo.jpg`, `images/favicon.svg`.
 
 ## 2. Store registrations in a Google Sheet
+
+**Important:** the website's registration form is **not** connected to the Google Form. It only copies the same questions. Until the steps below are done, a submission just opens WhatsApp with the answers prefilled (sent to `SITE.whatsapp`), and nothing is saved unless the person presses send. Once connected, every submission goes straight into the owner's Google Sheet (and by email if `NOTIFY_EMAIL` is set). The founder should do these steps himself so the Sheet belongs to his Google account.
+
 1. Create a new Google Sheet named **Code with Jallow Registrations**.
 2. Go to **Extensions → Apps Script**, delete the sample code, and paste in `apps-script/Code.gs`.
 3. (Optional) put your email in `NOTIFY_EMAIL` to get an alert for each sign-up.
